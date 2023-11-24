@@ -14,7 +14,6 @@
 using namespace std;
 
 // Author: Alex "Elyrial" Persson
-// Description: AdventOfCode - Solutions to part 1 and part 2 (Day 1) 
  
 // First part
 void PartOne(string seq) {
