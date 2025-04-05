@@ -1,4 +1,4 @@
-use advent_of_code::{get_solution, Solution};
+use advent_of_code::get_solution;
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
