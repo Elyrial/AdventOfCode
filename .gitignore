@@ -1,0 +1,6 @@
+# Secrets
+.env
+session.txt
+
+# Downloaded inputs
+inputs/
