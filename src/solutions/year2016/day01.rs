@@ -83,7 +83,7 @@ impl Day01 {
 mod tests {
     use super::*;
 
-    const TEST_INPUT_P1: &str = "R5, L5, R5, R3:";
+    const TEST_INPUT_P1: &str = "R5, L5, R5, R3";
     const TEST_INPUT_P2: &str = "R8, R4, R4, R8";
 
     #[test]
