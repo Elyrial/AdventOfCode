@@ -4,3 +4,6 @@ session.txt
 
 # Downloaded inputs
 inputs/
+
+# Compiled files
+target/
