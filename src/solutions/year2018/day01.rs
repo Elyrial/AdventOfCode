@@ -49,8 +49,8 @@ impl Day01 {
 mod tests {
     use super::*;
 
-    const TEST_INPUT_P1: &str = "";
-    const TEST_INPUT_P2: &str = "";
+    const TEST_INPUT_P1: &str = "+1\n-2\n+3\n+1";
+    const TEST_INPUT_P2: &str = "+7\n+7\n-2\n-7\n-4";
 
     #[test]
     fn test_part1() {
@@ -59,7 +59,7 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        assert_eq!(Day01.part2(TEST_INPUT_P2), "5");
+        assert_eq!(Day01.part2(TEST_INPUT_P2), "14");
     }
 }
 
