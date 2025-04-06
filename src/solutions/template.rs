@@ -18,9 +18,11 @@ impl super::super::Solution for Day01 {
 
 impl Day01 {
     pub fn part1(&self, input: &str) -> String {
+        input.lines().count().to_string()
     }
 
     pub fn part2(&self, input: &str) -> String {
+        input.lines().count().to_string()
     }
 }
 

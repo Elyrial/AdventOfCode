@@ -9,6 +9,7 @@ pub mod year2018;
 pub mod year2019;
 pub mod year2020;
 pub mod year2021;
+pub mod year2022;
 pub mod year2023;
 
 pub fn get_solution(year: u16, day: u8) -> Result<Box<dyn Solution>> {
@@ -20,6 +21,7 @@ pub fn get_solution(year: u16, day: u8) -> Result<Box<dyn Solution>> {
         2019 => year2019::get_solution(day),
         2020 => year2020::get_solution(day),
         2021 => year2021::get_solution(day),
+        2022 => year2022::get_solution(day),
         2023 => year2023::get_solution(day),
         _ => bail!("Year {} not implemented", year),
     }
