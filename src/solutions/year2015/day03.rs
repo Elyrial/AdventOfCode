@@ -24,14 +24,13 @@ impl Day03 {
         visited.insert((x, y));
 
         for c in input.chars() {
-            let dir = match c {
+            let (dx, dy) = match c {
                 '^' => (0, 1),
                 '>' => (1, 0),
                 'v' => (0, -1),
                 '<' => (-1, 0),
                 _ => continue,
             };
-            let (dx, dy) = dir;
             x += dx;
             y += dy;
             visited.insert((x, y));
