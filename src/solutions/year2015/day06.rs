@@ -84,17 +84,17 @@ impl Day06 {
 mod tests {
     use super::*;
 
-    const TEST_INPUT_P1: &str = "";
-    const TEST_INPUT_P2: &str = "";
+    const TEST_INPUT_P1: &str = "turn on 0,0 through 999,999";
+    const TEST_INPUT_P2: &str = "turn on 0,0 through 999,999";
 
     #[test]
     fn test_part1() {
-        assert_eq!(Day06.part1(TEST_INPUT_P1), "");
+        assert_eq!(Day06.part1(TEST_INPUT_P1), "1000000");
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(Day06.part2(TEST_INPUT_P2), "");
+        assert_eq!(Day06.part2(TEST_INPUT_P2), "1000000");
     }
 }
 
