@@ -11,6 +11,7 @@ dotenv = "0.15.0"
 anyhow = "1.0.97"
 clap = { version = "4.5.35", features = ["derive"] }
 md5 = "0.7.0"
+regex = "1.11.1"
 
 [[bin]]
 name = "advent_of_code"
