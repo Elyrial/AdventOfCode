@@ -71,17 +71,17 @@ impl Day02 {
 mod tests {
     use super::*;
 
-    const TEST_INPUT_P1: &str = "";
-    const TEST_INPUT_P2: &str = "";
+    const TEST_INPUT_P1: &str = "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc";
+    const TEST_INPUT_P2: &str = "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc";
 
     #[test]
     fn test_part1() {
-        assert_eq!(Day02.part1(TEST_INPUT_P1), "");
+        assert_eq!(Day02.part1(TEST_INPUT_P1), "2");
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(Day02.part2(TEST_INPUT_P2), "");
+        assert_eq!(Day02.part2(TEST_INPUT_P2), "1");
     }
 }
 
