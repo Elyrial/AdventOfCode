@@ -28,8 +28,9 @@ impl Day05 {
             order.entry(b.parse().unwrap()).or_default().insert(a.parse().unwrap());
         }
 
-        let pages = sequences.lines()
-            .map(|line| line.split(',').map(|x| x.parse::<usize>().unwrap()).collect::<Vec<usize>>());
+        let pages: Vec<Vec<usize>> = sequences.lines()
+            .map(|line| line.split(',').map(|x| x.parse::<usize>().unwrap()).collect())
+            .collect();
 
         for page in pages {
             if page.is_sorted_by(|x, y| order[y].contains(x)) {
@@ -50,8 +51,9 @@ impl Day05 {
             order.entry(b.parse().unwrap()).or_default().insert(a.parse().unwrap());
         }
 
-        let pages = sequences.lines()
-            .map(|line| line.split(',').map(|x| x.parse::<usize>().unwrap()).collect::<Vec<usize>>());
+        let pages: Vec<Vec<usize>> = sequences.lines()
+            .map(|line| line.split(',').map(|x| x.parse::<usize>().unwrap()).collect())
+            .collect();
 
         for mut page in pages {
             if !page.is_sorted_by(|x, y| order[y].contains(x)) {
