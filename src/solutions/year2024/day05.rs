@@ -33,7 +33,7 @@ impl Day05 {
             .collect();
 
         for page in pages {
-            if page.is_sorted_by(|x, y| order[y].contains(x)) {
+            if page.windows(2).all(|w| order.get(&w[1]).map_or(false, |prereqs| prereqs.contains(&w[0]))) {
                 sum += page[page.len() / 2];
             }
         }
@@ -56,8 +56,12 @@ impl Day05 {
             .collect();
 
         for mut page in pages {
-            if !page.is_sorted_by(|x, y| order[y].contains(x)) {
-                page.sort_by(|x, y| order[y].contains(x).cmp(&true));
+            if !page.windows(2).all(|w| order.get(&w[1]).map_or(false, |prereqs| prereqs.contains(&w[0]))) {
+                page.sort_by(|x, y| {
+                    let x_before_y = order.get(y).map_or(false, |prereqs| prereqs.contains(x));
+                    let y_before_x = order.get(x).map_or(false, |prereqs| prereqs.contains(y));
+                    x_before_y.cmp(&y_before_x)
+                });
                 sum += page[page.len() / 2];
             }
         }
