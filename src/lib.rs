@@ -18,6 +18,7 @@ pub fn get_solution(year: u16, day: u8) -> anyhow::Result<Box<dyn Solution>> {
         2022 => solutions::year2022::get_solution(day),
         2023 => solutions::year2023::get_solution(day),
         2024 => solutions::year2024::get_solution(day),
+        2025 => solutions::year2025::get_solution(day),
         _ => anyhow::bail!("Year not implemented"),
     }
 }
