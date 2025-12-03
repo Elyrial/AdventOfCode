@@ -21,25 +21,24 @@ impl Day03 {
         let mut total = 0;
 
         for line in input.lines() {
-           // 'b - b'0'' converts the ASCII byte to a numeric value.
-            let digits: Vec<u8> = line.bytes().map(|b| b - b'0').collect();
+            let mut largest = 0;
+            let mut second_largest = 0;
 
-            let mut best = 0;
-
-            // Iterate through all possible combinations and find the best value
-            for i in 0..digits.len() {
-                for j in i+1..digits.len() {
-                    let val = digits[i] as i32 * 10 + digits[j] as i32;
-                    if val > best {
-                        best = val;
-                    }
+            for b in line.bytes() {
+                let digit = b - b'0';
+                if digit > largest {
+                    second_largest = largest;
+                    largest = digit;
+                } else if digit > second_largest {
+                    second_largest = digit;
                 }
             }
 
-            total += best;
+            total += largest as i32 * 10 + second_largest as i32;
         }
 
         total.to_string()
+
     }
 
     // My stack-based greedy algorithm idea:
