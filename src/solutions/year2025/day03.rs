@@ -21,20 +21,23 @@ impl Day03 {
         let mut total = 0;
 
         for line in input.lines() {
-            let mut largest = 0;
-            let mut second_largest = 0;
+            let mut max_joltage = 0;
+            let mut largest_seen = 0;
 
-            for b in line.bytes() {
-                let digit = b - b'0';
-                if digit > largest {
-                    second_largest = largest;
-                    largest = digit;
-                } else if digit > second_largest {
-                    second_largest = digit;
+            for c in line.chars() {
+                if let Some(digit) = c.to_digit(10) {
+                    let joltage = largest_seen * 10 + digit;
+                    if joltage > max_joltage {
+                        max_joltage = joltage;
+                    }
+
+                    if digit > largest_seen {
+                        largest_seen = digit;
+                    }
                 }
             }
 
-            total += largest as i32 * 10 + second_largest as i32;
+            total += max_joltage as i32;
         }
 
         total.to_string()
