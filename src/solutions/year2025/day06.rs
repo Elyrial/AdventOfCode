@@ -16,46 +16,92 @@ impl super::super::Solution for Day06 {
     }
 }
 
+fn parse_numbers(input: &str) -> Vec<Vec<u128>> {
+    let lines: Vec<&str> = input.lines().collect();
+    lines[..lines.len() - 1]
+        .iter()
+        .map(|line| {
+            line.split_whitespace()
+            .map(|n| n.parse::<u128>().unwrap())
+            .collect()
+        })
+        .collect()
+}
+
+fn parse_operators(input: &str) -> Vec<char> {
+    input.lines()
+        .last()
+        .unwrap()
+        .split_whitespace()
+        .map(|s| s.chars().next().unwrap())
+        .collect()
+}
+
 impl Day06 {
     pub fn part1(&self, input: &str) -> String {
-        let lines: Vec<&str> = input.lines(). collect();
-
-        // Collect the numbers
-        let nums: Vec<Vec<u128>> = lines[..lines.len()-1]
-            .iter()
-            .map(|line| line.split_whitespace()
-                .map(|n| n.parse::<u128>().unwrap())
-                .collect())
-            .collect();
-
-        // Collect the operators
-        let ops: Vec<char> = lines.last().unwrap()
-            .split_whitespace()
-            .map(|s| s.chars().next().unwrap())
-            .collect();
+        let numbers = parse_numbers(input);
+        let operators = parse_operators(input);
 
         let mut total = 0u128;
-        let num_problems = ops.len();
+        let num_problems = operators.len();
 
-        for c in 0..num_problems {
-            let mut val = nums[0][c];
-            for r in 1..nums.len() {
-                match ops[c] {
-                    '+' => val += nums[r][c],
-                    '*' => val *= nums[r][c],
-                    _ => {},
+        for col in 0..num_problems {
+            let mut col_value = numbers[0][col];
+            for row in 1..numbers.len() {
+                match operators[col] {
+                    '+' => col_value += numbers[row][col],
+                    '*' => col_value *= numbers[row][col],
+                    _ => {}
                 }
             }
-            total += val;
+            total += col_value;
         }
 
         total.to_string()
-
     }
 
     pub fn part2(&self, input: &str) -> String {
-        // Implementation will follow
-        "".to_string()
+        let lines: Vec<&str> = input.lines().collect();
+        let width = lines[0].len();
+
+        // Collect columns as strings
+        let mut columns: Vec<String> = vec![String::new(); width];
+        for line in &lines {
+            for (i, c) in line.chars().enumerate() {
+                columns[i].push(c);
+            }
+        }
+
+        let mut total = 0u128;
+        let mut current_sum = 0u128;
+        let mut current_op = '+';
+
+        for col in columns {
+            let trimmed = col.trim();
+
+            if trimmed.ends_with('+') || trimmed.ends_with('*') {
+                total += current_sum;
+                current_op = trimmed.chars().last().unwrap();
+                current_sum = match current_op {
+                    '+' => 0,
+                    '*' => 1,
+                    _ => 0,
+                };
+            }
+
+            let num_str: String = trimmed.chars().filter(|c| c.is_ascii_digit()).collect();
+            if !num_str.is_empty() {
+                let num = num_str.parse::<u128>().unwrap_or(0);
+                current_sum = match current_op {
+                    '+' => current_sum + num,
+                    '*' => current_sum * num,
+                    _ => current_sum,
+                };
+            }
+        }
+
+        total += current_sum;
+        total.to_string()
     }
 }
 
