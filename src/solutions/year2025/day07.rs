@@ -53,12 +53,8 @@ impl Day07 {
                     splits += 1;
 
                     // Create beam to the left and right
-                    if c > 0 {
-                        new_beams.insert(c - 1);
-                    }
-                    if c + 1 < row.len() {
-                        new_beams.insert(c + 1);
-                    }
+                    new_beams.insert(c - 1);
+                    new_beams.insert(c + 1);
 
                 } else if active_beams.contains(&c) && row[c] != '^' {
                     // Continues downward if not a splitter
