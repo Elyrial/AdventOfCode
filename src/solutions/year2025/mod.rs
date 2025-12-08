@@ -6,6 +6,7 @@ pub mod day02;
 pub mod day03;
 pub mod day04;
 pub mod day05;
+pub mod day07;
 
 pub fn get_solution(day: u8) -> Result<Box<dyn Solution>> {
     match day {
@@ -14,6 +15,7 @@ pub fn get_solution(day: u8) -> Result<Box<dyn Solution>> {
         3 => Ok(Box::new(day03::Day03)),
         4 => Ok(Box::new(day04::Day04)),
         5 => Ok(Box::new(day05::Day05)),
+        7 => Ok(Box::new(day07::Day07)),
         _ => bail!("Day {} not implemented for year 2025", day),
     }
 }
