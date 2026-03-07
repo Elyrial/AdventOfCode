@@ -56,7 +56,7 @@ impl UnionFind {
         }
     }
 
-    // Find the representative (root) of the set containint x, with path compression
+    // Find the representative (root) of the set containing x, with path compression
     fn find(&mut self, x: usize) -> usize {
         if self.parent[x] != x {
             // Path compression: make parent point directly to root
@@ -131,7 +131,7 @@ impl Day08 {
         let mut components = n;
 
         for edge in edges {
-            // Try to union the components containint the two endpoints of this edge.
+            // Try to union the components containing the two endpoints of this edge.
             if uf.union(edge.i, edge.j) {
 
                 // A successful union means two components just merged into one.
