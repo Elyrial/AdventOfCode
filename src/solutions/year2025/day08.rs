@@ -1,22 +1,9 @@
-use std::time::{Duration, Instant};
 use std::collections::HashSet;
 use std::cmp::Ordering;
 
 pub struct Day08;
 
-impl super::super::Solution for Day08 {
-    fn solve(&self, input: &str) -> (String, String, Duration, Duration) {
-        let start = Instant::now();
-        let p1 = self.part1(input);
-        let t1 = start.elapsed();
-
-        let start = Instant::now();
-        let p2 = self.part2(input);
-        let t2 = start.elapsed();
-
-        (p1, p2, t1, t2)
-    }
-}
+crate::impl_solution!(Day08);
 
 struct Edge {
     dist: f64,
@@ -69,7 +56,7 @@ impl UnionFind {
         }
     }
 
-    // Find the representative (root) of the set containint x, with path compression
+    // Find the representative (root) of the set containing x, with path compression
     fn find(&mut self, x: usize) -> usize {
         if self.parent[x] != x {
             // Path compression: make parent point directly to root
@@ -104,9 +91,12 @@ impl Day08 {
         let n = points.len();
         let mut uf = UnionFind::new(n);
 
-        // Determine how many edges to process:
-        // For the test case (20 points), process 10 shortest edges
-        // For the real puzzle, process 1000 shortest edges
+        // The real puzzle input always has exactly 1000 junction boxes, and the puzzle
+        // specifies connecting only the 1000 shortest edges before identifying circuits.
+        // 1000 edges for 1000 nodes is enough to fully saturate a spanning tree (n-1 = 999
+        // merges), so no valid grouping can be missed. This limit is safe to hardcode because
+        // the puzzle input size is fixed. The test case uses 20 nodes and 10 edges (n/2),
+        // reflecting the same proportion.
         let limit = if n == 20 { 10 } else { edges.len().min(1000) };
 
         // Process the shortest edges_to_process edges
@@ -144,7 +134,7 @@ impl Day08 {
         let mut components = n;
 
         for edge in edges {
-            // Try to union the components containint the two endpoints of this edge.
+            // Try to union the components containing the two endpoints of this edge.
             if uf.union(edge.i, edge.j) {
 
                 // A successful union means two components just merged into one.

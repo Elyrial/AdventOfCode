@@ -1,20 +1,6 @@
-use std::time::{Duration, Instant};
-
 pub struct Day05;
 
-impl super::super::Solution for Day05 {
-    fn solve(&self, input: &str) -> (String, String, Duration, Duration) {
-        let start = Instant::now();
-        let p1 = self.part1(input);
-        let t1 = start.elapsed();
-
-        let start = Instant::now();
-        let p2 = self.part2(input);
-        let t2 = start.elapsed();
-
-        (p1, p2, t1, t2)
-    }
-}
+crate::impl_solution!(Day05);
 
 impl Day05 {
     // Count how many of the available ingredient IDs are in the fresh range
