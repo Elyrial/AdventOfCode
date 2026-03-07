@@ -1,20 +1,14 @@
-use std::time::{Duration, Instant};
 use std::collections::{HashSet, HashMap};
 
 pub struct Day07;
 
-impl super::super::Solution for Day07 {
-    fn solve(&self, input: &str) -> (String, String, Duration, Duration) {
-        let start = Instant::now();
-        let p1 = self.part1(input);
-        let t1 = start.elapsed();
+crate::impl_solution!(Day07);
 
-        let start = Instant::now();
-        let p2 = self.part2(input);
-        let t2 = start.elapsed();
-
-        (p1, p2, t1, t2)
-    }
+fn find_start_col(grid: &[Vec<char>]) -> usize {
+    grid.iter()
+        .flat_map(|row| row.iter().enumerate())
+        .find_map(|(c, &ch)| if ch == 'S' { Some(c) } else { None })
+        .unwrap()
 }
 
 impl Day07 {
@@ -24,18 +18,7 @@ impl Day07 {
             .collect();
 
         let h = grid.len();
-
-        // Find S
-        let mut start_col = None;
-        for (_r, row) in grid.iter().enumerate() {
-            for (c, &ch) in row.iter().enumerate() {
-                if ch == 'S' {
-                    start_col = Some(c);
-                    break;
-                }
-            }
-        }
-        let start_col = start_col.unwrap();
+        let start_col = find_start_col(&grid);
 
         let mut active_beams = HashSet::new();
         active_beams.insert(start_col);
@@ -74,18 +57,7 @@ impl Day07 {
             .collect();
 
         let h = grid.len();
-
-        // Find S
-        let mut start_col = None;
-        for (_r, row) in grid.iter().enumerate() {
-            for (c, &ch) in row.iter().enumerate() {
-                if ch == 'S' {
-                    start_col = Some(c);
-                    break;
-                }
-            }
-        }
-        let start_col = start_col.unwrap();
+        let start_col = find_start_col(&grid);
 
         // Map: column -> number of timelines currently
         let mut timelines = HashMap::new();
