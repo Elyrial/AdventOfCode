@@ -2,23 +2,37 @@ use std::time::Duration;
 
 pub mod solutions;
 
+/// Implements the [`Solution`] trait for a day struct, timing each part separately.
+///
+/// The struct must have:
+/// - `part1(&self, input: &str) -> String`
+/// - `part2(&self, input: &str) -> String`
+#[macro_export]
+macro_rules! impl_solution {
+    ($day:ident) => {
+        impl $crate::Solution for $day {
+            fn solve(
+                &self,
+                input: &str,
+            ) -> (String, String, ::std::time::Duration, ::std::time::Duration) {
+                let start = ::std::time::Instant::now();
+                let p1 = self.part1(input);
+                let t1 = start.elapsed();
+
+                let start = ::std::time::Instant::now();
+                let p2 = self.part2(input);
+                let t2 = start.elapsed();
+
+                (p1, p2, t1, t2)
+            }
+        }
+    };
+}
+
 pub trait Solution {
     fn solve(&self, input: &str) -> (String, String, Duration, Duration);
 }
 
 pub fn get_solution(year: u16, day: u8) -> anyhow::Result<Box<dyn Solution>> {
-    match year {
-        2015 => solutions::year2015::get_solution(day),
-        2016 => solutions::year2016::get_solution(day),
-        2017 => solutions::year2017::get_solution(day),
-        2018 => solutions::year2018::get_solution(day),
-        2019 => solutions::year2019::get_solution(day),
-        2020 => solutions::year2020::get_solution(day),
-        2021 => solutions::year2021::get_solution(day),
-        2022 => solutions::year2022::get_solution(day),
-        2023 => solutions::year2023::get_solution(day),
-        2024 => solutions::year2024::get_solution(day),
-        2025 => solutions::year2025::get_solution(day),
-        _ => anyhow::bail!("Year not implemented"),
-    }
+    solutions::get_solution(year, day)
 }
