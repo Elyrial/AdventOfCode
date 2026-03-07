@@ -1,22 +1,9 @@
-use std::time::{Duration, Instant};
 use std::collections::HashSet;
 use std::cmp::Ordering;
 
 pub struct Day08;
 
-impl super::super::Solution for Day08 {
-    fn solve(&self, input: &str) -> (String, String, Duration, Duration) {
-        let start = Instant::now();
-        let p1 = self.part1(input);
-        let t1 = start.elapsed();
-
-        let start = Instant::now();
-        let p2 = self.part2(input);
-        let t2 = start.elapsed();
-
-        (p1, p2, t1, t2)
-    }
-}
+crate::impl_solution!(Day08);
 
 struct Edge {
     dist: f64,
