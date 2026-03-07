@@ -1,20 +1,6 @@
-use std::time::{Duration, Instant};
-
 pub struct Day04;
 
-impl super::super::Solution for Day04 {
-    fn solve(&self, input: &str) -> (String, String, Duration, Duration) {
-        let start = Instant::now();
-        let p1 = self.part1(input);
-        let t1 = start.elapsed();
-
-        let start = Instant::now();
-        let p2 = self.part2(input);
-        let t2 = start.elapsed();
-
-        (p1, p2, t1, t2)
-    }
-}
+crate::impl_solution!(Day04);
 
 // Helper function to check if a coordinate is outside the grid
 fn outside_bounds(nr: isize, nc: isize, h: usize, w: usize) -> bool {

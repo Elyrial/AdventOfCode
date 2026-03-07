@@ -1,21 +1,8 @@
 use std::collections::HashSet;
-use std::time::{Duration, Instant};
 
 pub struct Day01;
 
-impl super::super::Solution for Day01 {
-    fn solve(&self, input: &str) -> (String, String, Duration, Duration) {
-        let start = Instant::now();
-        let p1 = self.part1(input);
-        let t1 = start.elapsed();
-
-        let start = Instant::now();
-        let p2 = self.part2(input);
-        let t2 = start.elapsed();
-
-        (p1, p2, t1, t2)
-    }
-}
+crate::impl_solution!(Day01);
 
 impl Day01 {
     pub fn part1(&self, input: &str) -> String {
