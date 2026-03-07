@@ -16,10 +16,6 @@ enum Commands {
         #[arg(short, long)]
         input: Option<PathBuf>,
     },
-    Fetch {
-        year: u16,
-        day: u8,
-    },
 }
 
 fn main() -> anyhow::Result<()> {
@@ -37,9 +33,6 @@ fn main() -> anyhow::Result<()> {
 
             println!("Part 1 ({}µs): {}", t1.as_micros(), p1);
             println!("Part 2 ({}µs): {}", t2.as_micros(), p2);
-        }
-        Commands::Fetch { year, day } => {
-            println!("Run this to fetch cargo run --bin fetch_input {} {}", year, day);
         }
     }
 
