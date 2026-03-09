@@ -23,4 +23,4 @@ if [ ! -f "$input_file" ]; then
     fi
 fi
 
-cargo run --bin advent_of_code -- run "$year" "$day"
+cargo run --release --bin advent_of_code -- run "$year" "$day"
