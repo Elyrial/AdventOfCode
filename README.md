@@ -1,6 +1,6 @@
 # Advent of Code
 
-Solutions for [Advent of Code](https://adventofcode.com/) puzzles, written in Rust. Covers 2015 to 2025.
+Solutions for [Advent of Code](https://adventofcode.com/) puzzles, written in Rust. Covers 2015 to 2025. This project is still in progress.
 
 ## Usage
 
